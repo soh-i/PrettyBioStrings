@@ -16,15 +16,19 @@ class PrettyBioStrings(object):
             'G': '\033[36m',
             'C': '\033[34m',
         }
-
+        self.P_R_CODE = {}
+        self.HYDROPHOBIC_CODE = {}
+        self.POLAR_CODE = {}
+        
     def run(self):
         self.opt = self.__cmd_args()
         if self.opt.fasta:
-            self._fasta_to_dict(self.opt.fasta)
+            #self._fasta_to_dict(self.opt.fasta"
+            raise NotImplementedError()
         elif self.opt.seq:
-            self.nuc_to_color
+            self.nuc_to_color(self.opt.seq)
 
-    def nuc_to_color(seq):
+    def nuc_to_color(self, seq):
         char = list(seq)
         for _ in char:
             if _ == 'A':
@@ -43,9 +47,9 @@ class PrettyBioStrings(object):
         fmt = IndentedHelpFormatter(indent_increment=2, max_help_position=60,
                                     width=120, short_first=1)
         parser = OptionParser(usage=usage, formatter=fmt, version='0.0.1',  description=desc)
-        parser.add_option('-f', dest='fasta', action='store', metavar='', type='string',
+        parser.add_option('-f', '--fasta', dest='fasta', action='store', metavar='', type='string',
                           help='Fasta file')
-        parser.add_option('-s', dest='seq', action='store', metavar='', type='string',
+        parser.add_option('-s','--seq', dest='seq', action='store', metavar='', type='string',
                           help="Raw sequence charactor")
         parser.add_option('-m', '--mode', dest='mode', action='store', metavar='', type='string',
                           help='Pretty print mode.')
